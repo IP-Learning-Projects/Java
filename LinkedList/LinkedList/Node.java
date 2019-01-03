@@ -2,7 +2,7 @@ package LinkedList;
 
 public class Node<T> {
     // reference to the next node in the chain, or null if there isn't one.
-    private Node next;
+    private Node<T> next;
 
     // data carried by this node. could be of any type you need.
     private T data;
@@ -21,7 +21,7 @@ public class Node<T> {
 
     // another Node constructor if we want to specify the node to point to.
     @SuppressWarnings("unused")
-    Node(T dataValue, Node nextNode) {
+    Node(T dataValue, Node<T> nextNode) {
         next = nextNode;
         data = dataValue;
     }
@@ -36,11 +36,11 @@ public class Node<T> {
         this.data = data;
     }
 
-    Node getNext() {
+    Node<T> getNext() {
         return next;
     }
 
-    void setNext(Node nextNode) {
+    void setNext(Node<T> nextNode) {
         next = nextNode;
     }
 

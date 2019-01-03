@@ -3,31 +3,15 @@ package LinkedList;
 public class LinkedList<T> {
 
     private int counter;
-    private Node head;
+    private Node<T> head;
 
     // Default constructor
     public LinkedList() {
-        head = new Node<>();
+        head = new Node<T>();
         counter = 0;
     }
 
-    // appends the specified element to the end of this list.
-    public void add(T data) {
 
-        Node tempNode = new Node<>(data);
-        Node currentNode = head;
-
-        // starting at the head node, crawl to the end of the list and then add element after last node
-        while (currentNode.getNext() != null) {
-            currentNode = currentNode.getNext();
-        }
-
-        // the last node's "next" reference set to our new node
-        currentNode.setNext(tempNode);
-
-        // increment the number of elements variable
-        incrementCounter();
-    }
 
     private int getCounter() {
         return counter;
@@ -41,10 +25,33 @@ public class LinkedList<T> {
         counter--;
     }
 
+    // returns the number of elements in this list.
+    public int size() {
+        return getCounter();
+    }
+
+    // appends the specified element to the end of this list.
+    public void add(T data) {
+
+        Node<T> tempNode = new Node<>(data);
+        Node<T> currentNode = head;
+
+        // starting at the head node, crawl to the end of the list and then add element after last node
+        while (currentNode.getNext() != null) {
+            currentNode = currentNode.getNext();
+        }
+
+        // the last node's "next" reference set to our new node
+        currentNode.setNext(tempNode);
+
+        // increment the number of elements variable
+        incrementCounter();
+    }
+
     // inserts the specified element at the specified position in this list
     public void add(T data, int index) {
-        Node tempNode = new Node<>(data);
-        Node currentNode = head;
+        Node<T> tempNode = new Node<>(data);
+        Node<T> currentNode = head;
 
         // crawl to the requested index or the last element in the list, whichever comes first
         for (int i = 0; i < index && currentNode.getNext() != null; i++) {
@@ -69,7 +76,7 @@ public class LinkedList<T> {
             return null;
         }
 
-        Node currentNode;
+        Node<T> currentNode;
         currentNode = head.getNext();
         for (int i = 0; i < index; i++) {
             if (currentNode.getNext() == null) {
@@ -77,7 +84,7 @@ public class LinkedList<T> {
             }
             currentNode = currentNode.getNext();
         }
-        return (T) currentNode.getData();
+        return currentNode.getData();
 
     }
 
@@ -88,7 +95,7 @@ public class LinkedList<T> {
         if (index < 0 || index > size())
             return false;
 
-        Node currentNode = head;
+        Node<T> currentNode = head;
         for (int i = 0; i < index; i++) {
             if (currentNode.getNext() == null) {
                 return false;
@@ -103,10 +110,7 @@ public class LinkedList<T> {
 
     }
 
-    // returns the number of elements in this list.
-    public int size() {
-        return getCounter();
-    }
+
 
     //overloaded method in order to print the entire list instead of the reference to objects
     public String toString() {
